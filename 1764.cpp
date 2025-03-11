@@ -21,7 +21,7 @@ int main() {
     }
 
     // 집합에 이름이 있는지 검사 후 있으면 다른 자료구조에 이름 추가
-    for (int i=0; i<M; i++) {`
+    for (int i=0; i<M; i++) {
         cin >> name;
         if (nnn.find(name) != nnn.end()) {
             list.emplace(name);
