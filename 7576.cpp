@@ -55,7 +55,7 @@ int main() {
         int today = day[y][x];
         lastDay = lastDay > today ? lastDay : today;
         if (x > 0 && map[y][x - 1] == 0) {
-            q.push({y, x - 1});
+            q.emplace(y, x - 1);
             notripe--;
             day[y][x - 1] = today + 1;
             map[y][x - 1] = 1;
