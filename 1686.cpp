@@ -3,9 +3,7 @@
 이동 시에는 m분동안 생존 가능
 이동가능한 거리 = 60.0*v*m
 dfs 또는 bfs로 이동가능한 거리만 탐색
-v=1, m=1이면 1초에 1미터 이동, 1분엔 60미터 이동
-sqrt를 쓰지 않을 것이므로 제곱된 값으로 계산
-최소로 이동한 거리를 찾아야 하므로, bfs로 이동하되 이동 횟수가 더 작은 경우가 생긴다면 이동
+bfs로 탐색하고, 이동할 수 있는 노드만 생성해서 그래프를 구현
 */
 
 #include <iostream>
@@ -19,59 +17,53 @@ using namespace std;
 int N = 0;
 double range = 0;
 double arr[SIZE][2];
-vector<pair<int, int> > graph[SIZE];
+vector<int> graph[SIZE];
 
 int bfs() {
-    int count[SIZE];
+    bool visited[SIZE] = {false,};
     queue<pair<int, int> > q;
-    for (int i = 0; i < N; i++) {
-        count[i] = -1;
-    }
-
     q.emplace(0, 0);
+    visited[0] = true;
+
     while (!q.empty()) {
         int from = q.front().first;
-        int c = q.front().second;
-        q.pop();
-        if (count[from] <= c && count[from] != -1) {
-            continue;
-        }
-        count[from] = c;
+        int count = q.front().second;
         if (from == 1) {
-            continue;
+            return count - 1;
         }
+        q.pop();
         for (int i = 0; i < graph[from].size(); i++) {
-            int to = graph[from][i].first;
-            int dist = graph[from][i].second;
-            if (dist <= range) {
-                q.emplace(to, c + 1);
+            int to = graph[from][i];
+            if (!visited[to]) {
+                visited[to] = true;
+                q.emplace(to, count + 1);
             }
         }
     }
-    return count[1];
+    return -1;
 }
 
 int main() {
     double V, M;
     string line;
-
-    getline(cin, line);
-    istringstream output(line);
-    output >> V >> M;
+    getline(cin , line);
+    istringstream iss(line);
+    iss >> V >> M;
     range = V * M * 60.0;
     range *= range;
 
     while (getline(cin, line)) {
         istringstream output(line);
-        output >> arr[N][0];
-        output >> arr[N][1];
+        output >> arr[N][0] >> arr[N][1];
         // 벙커 간 거리
         for (int to = 0; to < N; to++) {
             double dx = arr[N][0] - arr[to][0];
             double dy = arr[N][1] - arr[to][1];
             double d = dx * dx + dy * dy;
-            graph[N].emplace_back(to, d);
-            graph[to].emplace_back(N, d);
+            if (d <= range) {
+                graph[N].emplace_back(to);
+                graph[to].emplace_back(N);
+            }
         }
         N++;
     }
@@ -80,7 +72,7 @@ int main() {
     if (n < 0) {
         cout << "No.";
     } else {
-        cout << "Yes, visiting " << n - 1 << " other holes.";
+        cout << "Yes, visiting " << n << " other holes.";
     }
 }
 
