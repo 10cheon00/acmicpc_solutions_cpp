@@ -78,3 +78,4 @@ fabric.properties
 
 CMakeLists.txt
 *.out
+.clang-format

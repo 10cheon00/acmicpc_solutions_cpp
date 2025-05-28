@@ -31,7 +31,7 @@
       <option name="ENABLE_JAVADOC_FORMATTING" value="false" />
     </JavaCodeStyleSettings>
     <RiderCodeStyleSettings>
-      <option name="/Default/CodeStyle/CodeFormatting/CppClangFormat/EnableClangFormatSupport/@EntryValue" value="false" type="bool" />
+      <option name="/Default/CodeStyle/CodeFormatting/CppClangFormat/EnableClangFormatSupport/@EntryValue" value="true" type="bool" />
       <option name="/Default/CodeStyle/EditorConfig/EnableClangFormatSupport/@EntryValue" value="false" type="bool" />
       <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/ALIGN_MULTILINE_BINARY_EXPRESSIONS_CHAIN/@EntryValue" value="true" type="bool" />
       <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/ALIGN_MULTILINE_CALLS_CHAIN/@EntryValue" value="false" type="bool" />
@@ -128,6 +128,9 @@
       <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/CONTINUOUS_LINE_INDENT/@EntryValue" value="Double" type="string" />
       <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/TAB_WIDTH/@EntryValue" value="4" type="int" />
     </RiderCodeStyleSettings>
+    <clangFormatSettings>
+      <option name="ENABLED" value="true" />
+    </clangFormatSettings>
     <codeStyleSettings language="JAVA">
       <option name="LINE_COMMENT_AT_FIRST_COLUMN" value="false" />
       <option name="LINE_COMMENT_ADD_SPACE" value="true" />
